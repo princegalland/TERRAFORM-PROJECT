@@ -16,7 +16,7 @@ pipeline {
 
         stage('Terraform Plan') {
             steps {
-                sh 'terraform plan'
+                sh 'terraform plan -out=tfplan'
             }
         }
 
@@ -28,11 +28,14 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                sh 'terraform destroy -auto-approve'
+                sh 'terraform apply -auto-approve tfplan'
             }
         }
 
-
-    
+        stage('Terraform Destroy') {
+            steps {
+                sh 'terraform destroy -auto-approve'
+            }
+        }
     }
 }
