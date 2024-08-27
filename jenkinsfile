@@ -32,19 +32,7 @@ pipeline {
             }
         }
 
-        stage('Terraform Destroy') {
-            steps {
-                sh 'terraform destroy -auto-approve'
-            }
-        }
-    }
 
-    post {
-        always {
-            echo 'Pipeline completed.'
-        }
-        failure {
-            echo 'Pipeline failed! Cleaning up...'
-        }
+    
     }
 }
