@@ -32,10 +32,21 @@ pipeline {
             }
         }
 
-        stage('Terraform Destroy') {
-            steps {
-                sh 'terraform destroy -auto-approve'
-            }
+        // Uncomment this section if you need to destroy resources as part of your pipeline
+        // stage('Terraform Destroy') {
+        //     steps {
+        //         sh 'terraform destroy -auto-approve'
+        //     }
+        // }
+    }
+
+    // Optional post section for cleanup or notifications
+    post {
+        always {
+            echo 'Pipeline completed.'
+        }
+        failure {
+            echo 'Pipeline failed! Consider running terraform destroy if necessary.'
         }
     }
 }
