@@ -35,7 +35,7 @@ stage('Empty S3 Bucket') {
             steps {
                 script {
                     // Define the bucket name here
-                    def bucketName = "example-bucket"
+                    def bucketName = "clinton12"
                     
                     // Run the AWS CLI command to empty the bucket
                     sh "aws s3 rm s3://${bucketName} --recursive"
