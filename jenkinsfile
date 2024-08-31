@@ -31,7 +31,17 @@ pipeline {
                 sh 'terraform apply -auto-approve tfplan'
             }
         }
-
+stage('Empty S3 Bucket') {
+            steps {
+                script {
+                    // Define the bucket name here
+                    def bucketName = "example-bucket"
+                    
+                    // Run the AWS CLI command to empty the bucket
+                    sh "aws s3 rm s3://${bucketName} --recursive"
+                }
+            }
+        }
         stage('Terraform Destroy') {
             steps {
                 sh 'terraform destroy -auto-approve'
